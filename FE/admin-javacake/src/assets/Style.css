@@ -1,0 +1,40 @@
+@import url("icons/avasta/css/style.css");
+
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info span {
+    margin-right: 10px;
+}
+
+.user-info .bell-icon,
+.user-info .user-icon {
+    margin: 0 5px;
+    font-size: 20px;
+}

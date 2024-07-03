@@ -1,0 +1,191 @@
+@import url("icons/avasta/css/style.css");
+
+.side-menu {
+    width: 250px;
+    transition: width 0.3s;
+}
+
+#main-wrapper {
+    margin-top: -15.9px;
+}
+
+.side-menu.menu-toggled {
+    width: 80px;
+}
+
+.side-menu.menu-toggled .metismenu li a .icon {
+    padding-left: 20%;
+}
+
+.side-menu.menu-toggled .nav-text {
+    display: none;
+}
+
+.nav-label {
+    color: #bdbdc7;
+    padding: 10px 0px 10px 20px;
+}
+
+.side-menu.menu-toggled .nav-label {
+    display: none;
+    color: #bdbdc7;
+    padding-left: 20px;
+}
+
+.nav-side {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    background-color: #343957;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-shadow: inset -1px -20px 20px 4px rgb(20 25 69 / 79%)
+}
+
+.nav-text {
+    margin-left: 20px;
+}
+
+.nav-control {
+    width: 20px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-icon {
+    font-size: 24px;
+}
+
+.menu-toggle .nav-text {
+    display: none;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+}
+
+.hamburger.is-active .line {
+    background-color: red;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 4px 0;
+}
+
+.quixnav {
+    height: 100vh;
+    /* Đặt chiều cao mặc định bằng chiều cao màn hình */
+    overflow-y: auto;
+    /* Hiển thị scroll bar khi nội dung dài quá */
+    transition: width 0.3s;
+    background-color: #343957;
+    box-shadow: 0 2px 4px rgba(255, 0, 0, 0.1);
+}
+
+/* Style for the scrollbar */
+.quixnav::-webkit-scrollbar {
+    width: 5px;
+    /* Độ rộng của scroll bar */
+    background: transparent;
+    /* Nền trong suốt */
+}
+
+.quixnav::-webkit-scrollbar-thumb {
+    background: rgba(43, 42, 121, 0.494);
+    /* Màu của thanh cuộn */
+    border-radius: 6px;
+    /* Bo góc thanh cuộn */
+}
+
+.quixnav::-webkit-scrollbar-thumb:hover {
+    background: rgba(225, 216, 216, 0.3);
+    /* Màu của thanh cuộn khi hover */
+}
+
+.quixnav::-webkit-scrollbar-track {
+    background: transparent;
+    /* Nền trong suốt */
+}
+
+.quixnav-scroll {
+    position: relative;
+    /* Chiều cao bị loại bỏ vì quixnav đã kiểm soát */
+}
+
+.quixnav:hover {
+    scrollbar-color: rgba(255, 255, 255, 0.872);
+    /* Màu thanh cuộn khi hover */
+}
+
+/* Điều chỉnh độ cao và scroll bar cho menu khi toggled */
+.menu-toggle .quixnav {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.menu-toggle {
+    height: 650px;
+}
+
+.metismenu {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* .metismenu li {
+
+} */
+
+.metismenu li a {
+    margin-left: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #bdbdc7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.metismenu li a:hover {
+    background-color: #1e4cbf;
+    color: #ffffff;
+}
+
+.menu-toggle .metismenu li a .nav-text {
+    display: none;
+}
+
+.menu-toggled .metismenu>li>ul {
+    display: none;
+}
+
+.has-arrow {
+    cursor: pointer;
+}
+
+.pages {
+    display: none;
+}
+
+.pages.active {
+    display: block;
+}
+
+/* styles.module.css */
+.errorList {
+    display: none;
+    /* Ẩn danh sách lỗi mặc định */
+}
+
+.errorList.active {
+    display: block;
+    /* Hiển thị danh sách lỗi khi có class active */
+}

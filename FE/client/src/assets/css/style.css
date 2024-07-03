@@ -698,9 +698,9 @@ ul {
 
 /*NavBar*/
 header .container-setting nav {
-    position: absolute;
-    right: 4%;
-    left: 4%;
+    position: static;
+    /* right: 4%;
+    left: 4%; */
     /*z-index: 10;*/
     background-color: transparent !important;
     padding-top: 20px;
@@ -1342,7 +1342,7 @@ header .container-setting .navbar-nav .cart-item .badge-custom-setting {
 .main .sidebar-section .social-icons {
 
     position: absolute;
-    left: 50%;
+    left: 30%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -2109,7 +2109,7 @@ header .container-setting .navbar-nav .cart-item .badge-custom-setting {
 
 /*CONTACT US PAGE CSS*/
 .page-body {
-    overflow: visible !important;
+    overflow-y: visible !important;
 }
 
 .contact-us-nav .navbar-nav .nav-link,
@@ -2140,11 +2140,11 @@ header .container-setting .navbar-nav .cart-item .badge-custom-setting {
 }
 
 .contact-us-content {
-    padding-top: 6%;
+    padding-top: 2%;
 }
 
 .contact-us-content #map {
-    overflow: visible !important;
+    overflow-y: visible !important;
     height: 300px !important;
 }
 
@@ -4189,7 +4189,7 @@ textarea:focus {
 }
 
 
-.cart_table .btn-close {
+.cart_table .btn-xoa {
     display: inline-block;
     color: #e84455;
     font-size: 20px;

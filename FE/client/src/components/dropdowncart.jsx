@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavDropdown } from 'react-bootstrap';
-import '../assets/css/style2.css'
+// import '../assets/css/style2.css'
 
 const Dropdowncart = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -45,9 +45,8 @@ const Dropdowncart = () => {
                                 </span>
                             </span>
                         </div>
-                        <div className="actions">
-                            <button type="button" className="btn view-bag rounded-pill">View Bag</button>
-                            <button type="button" className="btn view-cart btn-medium btn-gradient rounded-pill">Checkout</button>
+                        <div className="actions" style={{ marginLeft: "20%" }}>
+                            <a href="/cart"><button type="button" className="btn view-cart btn-medium btn-gradient rounded-pill">Checkout</button></a>
                         </div>
                     </div>
                 </div>

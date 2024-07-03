@@ -23,19 +23,19 @@ const OverlayMenu = ({ onClose }) => {
             <nav className={visibleSubMenu ? "" : "nav-styling"}>
                 <ul className={`side-bar ${visibleSubMenu ? "nav-disappear" : ""}`}>
                     <li className="nav-item main-item">
-                        <a className="nav-link nav-appear" href="#">Home</a>
+                        <a className="nav-link nav-appear" href="/">Home</a>
                     </li>
                     <li className="nav-item main-item">
-                        <a className="nav-link nav-appear" href="#">Product</a>
+                        <a className="nav-link nav-appear" href="/product">Product</a>
                     </li>
                     <li className="nav-item main-item">
                         <a className="nav-link nav-appear" href="/login">SignIn</a>
                     </li>
                     <li className="nav-item main-item">
-                        <a className="nav-link nav-appear" href="#">About Us</a>
+                        <a className="nav-link nav-appear" href="/aboutus">About Us</a>
                     </li>
                     <li className="nav-item main-item">
-                        <a className="nav-link nav-appear" href="#">Contact Us</a>
+                        <a className="nav-link nav-appear" href="/contactus">Contact Us</a>
                     </li>
                 </ul>
             </nav>
