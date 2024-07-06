@@ -34,34 +34,30 @@ const SideMenu = () => {
                     <div className="quixnav-scroll">
                         <ul className="metismenu" id="menu">
                             <li className="nav-label">Main Menu</li>
-                            <li><a href="./QLTaiKhoan.html"><i className="icon icon-home-minimal"></i><span className="nav-text">Quản Lý Tài Khoản</span></a></li>
-                            <li><a href="./QLNhanVien.html"><i className="icon icon-single-04"></i><span className="nav-text">Quản Lý Nhân Viên</span></a></li>
-                            <li><a href="./QLViecLam.html"><i className="icon icon-single-content-03"></i><span className="nav-text">Quản Lý Việc Làm</span></a></li>
-                            <li><a href="./QLDonGiat.html"><i className="icon icon-cart-simple"></i><span className="nav-text">Quản Lý Đơn Giặt</span></a></li>
-                            <li><a href="./QLThongTinKH.html"><i className="icon icon-app-store"></i><span className="nav-text">Quản Lý Thông Tin Khách Hàng</span></a></li>
-                            <li><a href="./QLKho.html"><i className="icon icon-folder-15"></i><span className="nav-text">Quản Lý Kho</span></a></li>
-                            <li><a href="./QLKhuyenMai.html"><i className="icon icon-share-66"></i><span className="nav-text">Quản Lý Khuyến Mãi</span></a></li>
-                            <li><a href="./QLGiaoDien.html"><i className="icon icon-edit-72"></i><span className="nav-text">Quản Lý Giao Diện</span></a></li>
-                            <li><a href="./QLGiatLa.html"><i className="icon icon-attach-87"></i><span className="nav-text">Quản Lý Giặt Là</span></a></li>
+                            <li><a href="/ql-tai-khoan"><i className="icon icon-home-minimal"></i><span className="nav-text">Quản Lý Tài Khoản</span></a></li>
+                            <li><a href="/ql-muc"><i className="icon icon-folder-15"></i><span className="nav-text">Quản Lý Danh Mục</span></a></li>
+                            <li><a href="/ql-don-hang"><i className="icon icon-single-content-03"></i><span className="nav-text">Quản Lý Đơn Hàng</span></a></li>
+                            <li><a href="/ql-san-pham"><i className="icon icon-cart-simple"></i><span className="nav-text">Quản Lý Sản Phẩm</span></a></li>
+                            <li><a href="/ql-cong-thuc"><i className="icon icon-app-store"></i><span className="nav-text">Quản Lý Công Thức</span></a></li>
                             <li className="nav-label">Extra</li>
                             <li>
                                 <a className="has-arrow" onClick={toggleListPages}>
                                     <i className="icon icon-single-copy-06"></i><span className="nav-text">Pages</span>
                                 </a>
                                 <ul className={`pages ${isPagesOpen ? 'active' : ''}`}>
-                                    <li><a href="./page-register.html">Register</a></li>
-                                    <li><a href="./page-login.html">Login</a></li>
+                                    <li><a href="/">Register</a></li>
+                                    <li><a href="/login">Login</a></li>
                                     <li>
                                         <a className="has-arrow" onClick={toggleListError}>Error</a>
                                         <ul className={`errorList ${isErrorOpen ? 'active' : ''}`}>
-                                            <li><a href="./page-error-400.html">Error 400</a></li>
-                                            <li><a href="./page-error-403.html">Error 403</a></li>
-                                            <li><a href="./page-error-404.html">Error 404</a></li>
-                                            <li><a href="./page-error-500.html">Error 500</a></li>
-                                            <li><a href="./page-error-503.html">Error 503</a></li>
+                                            <li><a href="#">Error 400</a></li>
+                                            <li><a href="#">Error 403</a></li>
+                                            <li><a href="#">Error 404</a></li>
+                                            <li><a href="#">Error 500</a></li>
+                                            <li><a href="#">Error 503</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="./page-lock-screen.html">Lock Screen</a></li>
+                                    <li><a href="/">Lock Screen</a></li>
                                 </ul>
                             </li>
                         </ul>

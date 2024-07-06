@@ -3,11 +3,29 @@
 .app {
     display: flex;
     height: 100vh;
+    overflow: hidden;
+}
+
+main {
+    margin-top: 10px;
+    padding-left: 30px;
+    height: fit-content;
+    overflow: scroll;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
     display: flex;
-    justify-content: space-between;
+    height: 69px;
+    width: 100%;
+    padding-left: 30px;
+    margin-bottom: -10px;
+    box-shadow: inset -1px -20px 20px 4px rgb(209 209 209 / 79%);
 }
 
 .search-bar {
@@ -37,4 +55,81 @@
 .user-info .user-icon {
     margin: 0 5px;
     font-size: 20px;
+}
+
+.container {
+    padding: 20px;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4e73df;
+}
+
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #858796;
+}
+
+.table-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    vertical-align: middle;
+    border-top: 1px solid #e3e6f0;
+}
+
+.btn-rounded {
+    border-radius: 1rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-warning {
+    background-color: #f6c23e;
+    border: none;
+    color: white;
+}
+
+.btn-warning:hover {
+    background-color: #e3a008;
+}
+
+.btn-danger {
+    background-color: #e74a3b;
+    border: none;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c12e2a;
 }
