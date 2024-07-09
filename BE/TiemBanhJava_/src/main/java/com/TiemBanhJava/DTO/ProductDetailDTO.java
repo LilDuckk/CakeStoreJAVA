@@ -13,5 +13,6 @@ public class ProductDetailDTO {
     @NotNull(message = "Phải có productID")
     private int productID;
     private float weight;
+    private float price;
     private String description;
 }

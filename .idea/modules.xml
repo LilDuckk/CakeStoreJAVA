@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CakeStoreJAVA.iml" filepath="$PROJECT_DIR$/.idea/CakeStoreJAVA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BE/TiemBanhJava_/TiemBanhJava.iml" filepath="$PROJECT_DIR$/BE/TiemBanhJava_/TiemBanhJava.iml" />
+    </modules>
+  </component>
+</project>

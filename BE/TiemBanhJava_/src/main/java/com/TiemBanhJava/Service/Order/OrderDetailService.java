@@ -35,6 +35,7 @@ public class OrderDetailService implements IOrderDetailService{
                     .description(orderDetailDTO.getDescription())
                     .build();
             orderDetail.setDelete(false);
+            orders.addOrderDetail(orderDetail);
             return orderDetailRepository.save(orderDetail);
         } else {
             return null;
@@ -58,6 +59,7 @@ public class OrderDetailService implements IOrderDetailService{
             orderDetail.setOrder(orders);
             orderDetail.setCost(orderDetailDTO.getCost());
             orderDetail.setCost(orderDetailDTO.getCost());
+            orders.addOrderDetail(orderDetail);
             return orderDetailRepository.saveAndFlush(orderDetail);
         }else {
             return null;
@@ -69,6 +71,8 @@ public class OrderDetailService implements IOrderDetailService{
         OrderDetail orderDetail = orderDetailRepository.findById(id).orElseThrow(()-> new DataNotFoundException("Không tìm tấy order với id"+ id));
         if(orderDetail != null) {
             orderDetail.setDelete(true);
+            Orders orders = orderDetail.getOrder();
+            orders.removeOrderDetails(orderDetail);
             orderDetailRepository.saveAndFlush(orderDetail);
         }
     }

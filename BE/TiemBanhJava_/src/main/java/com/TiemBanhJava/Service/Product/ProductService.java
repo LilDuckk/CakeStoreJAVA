@@ -41,7 +41,6 @@ public class ProductService implements IProductService {
             Product product = Product.builder()
                     .category(category)
                     .name(productDTO.getName())
-                    .price(productDTO.getPrice())
                     .thumbnail(insertThumbnail(productDTO.getThumbnail()))
                     .build();
             return productRepository.save(product);
@@ -64,7 +63,6 @@ public class ProductService implements IProductService {
         if (category.isDelete() == false) {
             product.setCategory(category);
             product.setName(productDTO.getName());
-            product.setPrice(productDTO.getPrice());
             product.setThumbnail(insertThumbnail(productDTO.getThumbnail()));
             return productRepository.saveAndFlush(product);
         } else {
