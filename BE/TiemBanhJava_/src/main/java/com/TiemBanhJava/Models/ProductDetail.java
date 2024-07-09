@@ -24,5 +24,13 @@ public class ProductDetail extends BaseModel{
     private float weight;
     private String description;
 
+    private float price;
 
+    @PostPersist
+    @PostUpdate
+    private void updateProductPrice() {
+        if (product != null) {
+            product.updatePrice();
+        }
+    }
 }

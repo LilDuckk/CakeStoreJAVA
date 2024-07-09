@@ -2,7 +2,8 @@ package com.TiemBanhJava.Service.User;
 
 import com.TiemBanhJava.DTO.UsersDTO;
 import com.TiemBanhJava.Models.Users;
-import com.TiemBanhJava.Response.User.UserRespone;
+import com.TiemBanhJava.Response.User.UseResponse;
+import com.TiemBanhJava.Response.User.UserDetailRespone;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -16,10 +17,10 @@ public interface IUserService {
         Optional<Users> getByPhoneNumber(String phoneNumber) throws Exception;
         Users updateUser(int id, UsersDTO userDTO) throws Exception;
 
-        Users getUser(int id)throws Exception;
+        UserDetailRespone getUser(int id)throws Exception;
 
-        Page<UserRespone> getListUser(PageRequest pageRequest);
+        Page<UseResponse> getListUser(PageRequest pageRequest);
 
-        void deleteUser(int id);
+        void deleteUser(int id) throws Exception;
 
 }

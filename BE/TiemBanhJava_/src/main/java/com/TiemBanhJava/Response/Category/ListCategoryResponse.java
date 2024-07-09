@@ -11,6 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class ListCategoryResponse {
-     private List<CategoryResponse> categoryRespoes;
+     private List<CategoryResponse> categoryResponse;
     private int totalPages;
 }

@@ -4,6 +4,7 @@ import com.TiemBanhJava.DTO.ImageProductDTO;
 import com.TiemBanhJava.DTO.ProductDetailDTO;
 import com.TiemBanhJava.Exeception.DataNotFoundException;
 import com.TiemBanhJava.Models.ImageProduct;
+import com.TiemBanhJava.Models.OrderDetail;
 import com.TiemBanhJava.Models.Product;
 import com.TiemBanhJava.Models.ProductDetail;
 import com.TiemBanhJava.Repository.ImageProductRepository;
@@ -47,9 +48,11 @@ public class ProductDetailService implements  IProductDetailService{
             ProductDetail productDetail = ProductDetail.builder()
                     .product(product)
                     .weight(productDetailDTO.getWeight())
+                    .price(productDetailDTO.getPrice())
                     .description(productDetailDTO.getDescription())
                     .build();
             productDetail.setDelete(false);
+            product.addProductDetail(productDetail);
            return productDetailRepository.save(productDetail);
         }else {
             return null;
@@ -70,6 +73,8 @@ public class ProductDetailService implements  IProductDetailService{
             productDetail.setProduct(product);
             productDetail.setWeight(productDetailDTO.getWeight());
             productDetail.setDescription(productDetailDTO.getDescription());
+            productDetail.setPrice(productDetailDTO.getPrice());
+            product.addProductDetail(productDetail);
             return productDetailRepository.saveAndFlush(productDetail);
         }else {
             return null;
@@ -120,6 +125,8 @@ public class ProductDetailService implements  IProductDetailService{
         ProductDetail productDetail = productDetailRepository.findById(id).orElseThrow(()-> new DataNotFoundException("Không tìm thấy Product Detail với id"));
         if(productDetail != null) {
             productDetail.setDelete(true);
+            Product product = productDetail.getProduct();
+            product.removeProductDetail(productDetail);
             productDetailRepository.saveAndFlush(productDetail);
         }
     }

@@ -1,5 +1,6 @@
 package com.TiemBanhJava.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class OrderDetail extends BaseModel {
     @ManyToOne()
     @ToString.Exclude
     @JoinColumn(name = "orderID")
+    @JsonBackReference
     private Orders order;
     @ManyToOne()
     @ToString.Exclude
@@ -27,4 +29,12 @@ public class OrderDetail extends BaseModel {
     private float cost;
     private String description;
 
+    @PostPersist
+    @PostUpdate
+    public void updateOrderCost() {
+        if (order != null) {
+            this.cost = product.getPrice();
+            order.updateCost();
+        }
+    }
 }

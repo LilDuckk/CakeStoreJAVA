@@ -3,6 +3,9 @@ package com.TiemBanhJava.Response.Order;
 import com.TiemBanhJava.Models.Orders;
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @Getter
 @Setter
@@ -11,13 +14,21 @@ import lombok.*;
 @Builder
 public class OrderResponse {
     private int userID;
-    private boolean orderStatus;
+    private String phoneNumber;
+    private String status;
+    private String shippingAddress;
+    private LocalDate shippingDate;
+    private String paymentMethod;
     private float cost;
 
     public static OrderResponse fromOrder(Orders orders){
         OrderResponse orderRespones = OrderResponse.builder()
                 .userID(orders.getUser().getUserID())
-                .orderStatus(orders.isOrderStatus())
+                .phoneNumber(orders.getTrackingNumber())
+                .status(orders.getStatus())
+                .shippingAddress(orders.getShippingAddress())
+                .shippingDate(orders.getShippingDate())
+                .paymentMethod(orders.getPaymentMethod())
                 .cost(orders.getCost())
                 .build();
         return orderRespones;

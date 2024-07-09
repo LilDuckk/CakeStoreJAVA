@@ -31,7 +31,7 @@ public class CategoryController {
         int totalPages = categoryPage.getTotalPages();
         List<CategoryResponse> categoryResponses =categoryPage.getContent();
         return ResponseEntity.ok(ListCategoryResponse.builder()
-                .categoryRespoes(categoryResponses)
+                .categoryResponse(categoryResponses)
                 .totalPages(totalPages)
                 .build());
     }
