@@ -9,6 +9,7 @@ import com.TiemBanhJava.Repository.RoleRepository;
 import com.TiemBanhJava.Repository.UsersRepository;
 import com.TiemBanhJava.Response.User.UseResponse;
 import com.TiemBanhJava.Response.User.UserDetailRespone;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -74,16 +75,31 @@ public class UserService implements IUserService{
     }
 
     @Override
+    @Transactional
     public Users updateUser(int id, UsersDTO userDTO) throws Exception {
         Users user = usersRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Không tìm thấy User theo ID trên"));
-        String password = userDTO.getUserPassword();
-        String encodedPassword = passwordEncoder.encode(password);
-        user.setUserName(userDTO.getUserName());
-        user.setPhoneNumber(userDTO.getPhoneNumber());
-        user.setUserAddress(userDTO.getUserAddress());
-        user.setUserGender(userDTO.getUserGender());
-        user.setUserPassword(encodedPassword);
-        return usersRepository.save(user);
+        if (userDTO.getUserName() != null && !userDTO.getUserName().isEmpty()) {
+            user.setUserName(userDTO.getUserName());
+        }
+
+        if (userDTO.getPhoneNumber() != null && !userDTO.getPhoneNumber().isEmpty()) {
+            user.setPhoneNumber(userDTO.getPhoneNumber());
+        }
+
+        if (userDTO.getUserAddress() != null && !userDTO.getUserAddress().isEmpty()) {
+            user.setUserAddress(userDTO.getUserAddress());
+        }
+
+        if (userDTO.getUserGender() != null) {
+            user.setUserGender(userDTO.getUserGender());
+        }
+
+        if (userDTO.getUserPassword() != null && !userDTO.getUserPassword().isEmpty()) {
+            String encodedPassword = passwordEncoder.encode(userDTO.getUserPassword());
+            user.setUserPassword(encodedPassword);
+        }
+
+        return usersRepository.saveAndFlush(user);
     }
 
     @Override
