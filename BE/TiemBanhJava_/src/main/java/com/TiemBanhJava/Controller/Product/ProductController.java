@@ -63,8 +63,15 @@ public class ProductController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            productService.create(productDTO);
-            return ResponseEntity.ok("Thêm mới Product" + productDTO);
+            Product product =productService.create(productDTO);
+            ProductResponse productResponse = ProductResponse.fromProduct(product);
+
+            Map<String,Object> object = Map.of(
+                    "message", "Updated product successfully",
+                    "product", productResponse
+            );
+
+            return ResponseEntity.ok(object);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

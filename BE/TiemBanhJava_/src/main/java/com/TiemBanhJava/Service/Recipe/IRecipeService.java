@@ -21,4 +21,5 @@ public interface IRecipeService {
     Page<RecipeResponse> getList(PageRequest pageRequest);
     RecipeResponse getRecipeWithImages(int id) throws Exception;
     String saveImage(int id, ImageRecipeDTO imageRecipeDTO) throws Exception ;
+    RecipeResponse toRecipeResponse(Recipe recipe);
 }

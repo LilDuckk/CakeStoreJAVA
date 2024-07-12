@@ -17,6 +17,7 @@ public interface IProductDetailService {
     ProductDetail update(int id, ProductDetailDTO productDetailDTO) throws Exception;
 
     String saveImage(int productID, ImageProductDTO imageProductDTO) throws  Exception;
+    String updateImage(int imageID, ImageProductDTO imageProductDTO) throws Exception;
     void delete(int id) throws Exception;
     ProductDetailResponse getProductDetailWithImages(int productDetailID) throws Exception;
     Page<ProductDetailResponse> getList(PageRequest pageRequest);
