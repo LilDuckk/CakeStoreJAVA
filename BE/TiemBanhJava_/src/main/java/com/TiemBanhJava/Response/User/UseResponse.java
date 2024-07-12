@@ -20,18 +20,16 @@ public class UseResponse {
     public String userGender;
     public String userAddress;
     private Date userBirthDate;
-    private boolean delete;
 
     public static UseResponse fromUser(Users user) {
         UseResponse useResponse = UseResponse.builder()
                 .userID(user.getUserID())
                 .userName(user.getUserNames())
-                .userGender(user.getUserGender())
                 .roleName(user.getRole().getRoleName())
                 .phoneNumber(user.getPhoneNumber())
+                .userGender(user.getUserGender())
                 .userAddress(user.getUserAddress())
                 .userBirthDate(user.getUserBirthDate())
-                .delete(user.isDelete())
                 .build();
         return useResponse;
     }
