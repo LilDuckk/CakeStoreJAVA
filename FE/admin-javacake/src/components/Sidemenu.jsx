@@ -23,6 +23,11 @@ const SideMenu = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Xóa token khi logout
+        window.location.reload(); // Điều hướng đến trang login sau khi logout
+    };
+
     return (
         <div className={`side-menu ${isMenuToggled ? 'menu-toggled' : ''}`}>
             <div className='nav-side'>
@@ -61,6 +66,7 @@ const SideMenu = () => {
                                     <li><a href="/">Lock Screen</a></li>
                                 </ul>
                             </li>
+                            <li><Link to="/login" onClick={handleLogout}><i className="icon"></i><span className="nav-text">LogOut</span></Link></li>
                         </ul>
                     </div>
                 </div>

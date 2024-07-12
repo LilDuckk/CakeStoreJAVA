@@ -14,24 +14,24 @@ import java.util.Date;
 @Builder
 public class OrderResponse {
     private int userID;
+    private String userName;
     private String phoneNumber;
     private String status;
     private String shippingAddress;
     private LocalDate shippingDate;
     private String paymentMethod;
     private float cost;
-    private boolean delete;
 
     public static OrderResponse fromOrder(Orders orders){
         OrderResponse orderRespones = OrderResponse.builder()
                 .userID(orders.getUser().getUserID())
+                .userName(orders.getUser().getUserNames())
                 .phoneNumber(orders.getTrackingNumber())
                 .status(orders.getStatus())
                 .shippingAddress(orders.getShippingAddress())
                 .shippingDate(orders.getShippingDate())
                 .paymentMethod(orders.getPaymentMethod())
                 .cost(orders.getCost())
-                .delete(orders.isDelete())
                 .build();
         return orderRespones;
     }

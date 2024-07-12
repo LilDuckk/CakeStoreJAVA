@@ -26,6 +26,7 @@ public class UseResponse {
         UseResponse useResponse = UseResponse.builder()
                 .userID(user.getUserID())
                 .userName(user.getUserNames())
+                .userGender(user.getUserGender())
                 .roleName(user.getRole().getRoleName())
                 .phoneNumber(user.getPhoneNumber())
                 .userAddress(user.getUserAddress())

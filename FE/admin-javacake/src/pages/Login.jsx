@@ -17,8 +17,7 @@ const Login = ({ isLoggedIn }) => {
 
             if (payload.role === "ROLE_ADMIN") {
                 localStorage.setItem('token', response.token);
-                // navigate("/");
-                window.location.reload();
+                window.location.href = "/";
             } else {
                 setError("Tài khoản không có quyền")
             }
@@ -29,10 +28,6 @@ const Login = ({ isLoggedIn }) => {
         }
     };
 
-
-    if (isLoggedIn) {
-        return <Navigate to="/" />
-    }
 
     return (
         <div className="login-container">
