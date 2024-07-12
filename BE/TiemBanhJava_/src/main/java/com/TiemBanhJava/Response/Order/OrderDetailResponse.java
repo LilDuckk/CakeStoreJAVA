@@ -15,12 +15,15 @@ public class OrderDetailResponse{
     private float cost;
     private String description;
 
+    private boolean delete;
+
     public static OrderDetailResponse fromOrderDetail(OrderDetail orderDetail){
         OrderDetailResponse orderDetailResponse = OrderDetailResponse.builder()
                 .orderID(orderDetail.getOrderDetailID())
                 .productID(orderDetail.getProduct().getProductID())
                 .cost(orderDetail.getCost())
                 .description(orderDetail.getDescription())
+                .delete(orderDetail.isDelete())
                 .build();
         return orderDetailResponse;
     }

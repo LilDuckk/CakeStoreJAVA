@@ -16,6 +16,7 @@ public class CategoryResponse {
     private String name;
 
     private int lever;
+    private boolean delete;
 
     public static CategoryResponse fromCategory(Category category){
         CategoryResponse categoryRespoes = CategoryResponse.builder()
@@ -23,6 +24,7 @@ public class CategoryResponse {
                 .categoryParent(category.getCategoryParent())
                 .name(category.getName())
                 .lever(category.getLever())
+                .delete(category.isDelete())
                 .build();
         return categoryRespoes;
     }

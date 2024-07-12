@@ -16,6 +16,7 @@ public class RecipeResponse {
     private int productID;
     private List<String> imagePaths;
     private  List<Integer> status;
+    private boolean delete;
 
     public static RecipeResponse fromRecipe(Recipe recipe, List<String> imagePaths, List<Integer> status ) {
         RecipeResponse recipeResponse = RecipeResponse.builder()
@@ -23,6 +24,7 @@ public class RecipeResponse {
                 .productID(recipe.getProduct().getProductID())
                 .imagePaths(imagePaths)
                 .status(status)
+                .delete(recipe.isDelete())
                 .build();
         return recipeResponse;
     }

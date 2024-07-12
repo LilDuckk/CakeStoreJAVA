@@ -20,6 +20,7 @@ public class OrderResponse {
     private LocalDate shippingDate;
     private String paymentMethod;
     private float cost;
+    private boolean delete;
 
     public static OrderResponse fromOrder(Orders orders){
         OrderResponse orderRespones = OrderResponse.builder()
@@ -30,6 +31,7 @@ public class OrderResponse {
                 .shippingDate(orders.getShippingDate())
                 .paymentMethod(orders.getPaymentMethod())
                 .cost(orders.getCost())
+                .delete(orders.isDelete())
                 .build();
         return orderRespones;
     }

@@ -27,9 +27,7 @@ const Header = () => {
         <header className="header">
             <h2>{getTitle()}</h2>
             <div className="user-info">
-                <span>Hello, Welcome Here</span>
-                <i className="bell-icon"></i>
-                <i className="user-icon"></i>
+
             </div>
         </header>
     );

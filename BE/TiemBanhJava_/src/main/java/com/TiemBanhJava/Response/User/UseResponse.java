@@ -20,6 +20,7 @@ public class UseResponse {
     public String userGender;
     public String userAddress;
     private Date userBirthDate;
+    private boolean delete;
 
     public static UseResponse fromUser(Users user) {
         UseResponse useResponse = UseResponse.builder()
@@ -29,6 +30,7 @@ public class UseResponse {
                 .phoneNumber(user.getPhoneNumber())
                 .userAddress(user.getUserAddress())
                 .userBirthDate(user.getUserBirthDate())
+                .delete(user.isDelete())
                 .build();
         return useResponse;
     }

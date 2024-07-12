@@ -113,7 +113,7 @@ public class ProductService implements IProductService {
             Files.copy(file.getInputStream(), destination, StandardCopyOption.REPLACE_EXISTING);
             return uniqueFileName;
         }
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bạn chưa thêm file ảnh");
+        return null;
     }
 }
 
