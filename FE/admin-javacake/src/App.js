@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Admin from './pages/(logged-in)/Admin';
 import AccountManage from './pages/(logged-in)/AccountManage';
 import OrderManage from './pages/(logged-in)/OrderManage';
-import ProductMange from './pages/(logged-in)/ProductManage';
+import ProductMange from './pages/(logged-in)/Product/ProductManage';
 import RecipeManage from './pages/(logged-in)/RecipeManage';
-import CategoryManage from './pages/(logged-in)/CategoryManage';
+import CategoryManage from './pages/(logged-in)/Category/CategoryManage';
 import Header from './components/Header';
 import SideMenu from './components/Sidemenu';
 
