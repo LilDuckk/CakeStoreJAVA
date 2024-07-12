@@ -98,7 +98,12 @@ public class UserController {
     public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UsersDTO userDTO) throws Exception{
         try{
             Users user = userService.updateUser(id, userDTO);
-            return ResponseEntity.ok(user);
+            UseResponse useResponse = UseResponse.fromUser(user);
+            Map<String,Object> object = Map.of(
+                    "message", "Updated User successfully",
+                    "user", useResponse
+            );
+            return ResponseEntity.ok(object);
         }catch (Exception e){
             return ResponseEntity.badRequest().body("Không tìm thấy user");
         }
