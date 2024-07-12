@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class OrderDetailController {
     private final IOrderDetailService orderDetailService;
 
     @GetMapping("/list")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<ListOrderDetailResponse> getAllOrder(@RequestParam("page") int page, @RequestParam("limit") int limit) {
         PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("orderDetailID").descending());
         Page<OrderDetailResponse> orderDetailResponsePage = orderDetailService.getList(pageRequest);
@@ -40,6 +42,7 @@ public class OrderDetailController {
                 .build());
     }
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> getOrderDetailByID (@Valid @PathVariable("id")int id){
         try{
             OrderDetail ordersDetail = orderDetailService.getbyID(id);
@@ -51,6 +54,7 @@ public class OrderDetailController {
     }
 
     @PostMapping("/insert")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> insertOrderDetail(@Valid @RequestBody OrderDetailDTO orderDetailDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -65,6 +69,7 @@ public class OrderDetailController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateOrderDetail(@PathVariable int id ,@Valid @RequestBody OrderDetailDTO orderDetailDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -79,6 +84,7 @@ public class OrderDetailController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> deleteCategory(@PathVariable int id) {
         try{
             orderDetailService.delete(id);

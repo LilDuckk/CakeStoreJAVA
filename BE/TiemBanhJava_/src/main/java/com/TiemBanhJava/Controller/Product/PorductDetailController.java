@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,7 @@ public class PorductDetailController {
     }
 
     @PostMapping("/insert")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> insertProductDetail(@Valid @RequestBody ProductDetailDTO productDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -75,6 +77,7 @@ public class PorductDetailController {
         }
     }
     @PostMapping(value = "/insertImage/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> insertImage(@Valid @ModelAttribute ImageProductDTO imageProductDTO, @PathVariable int id, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -97,6 +100,7 @@ public class PorductDetailController {
         }
     }
     @PutMapping(value = "update/insertImage/{insertImageID}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> UpdateImage(@Valid @ModelAttribute ImageProductDTO imageProductDTO, @PathVariable int insertImageID, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -120,6 +124,7 @@ public class PorductDetailController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateProductDetail(@PathVariable int id ,@Valid @RequestBody ProductDetailDTO productDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -139,6 +144,7 @@ public class PorductDetailController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> deleteProduct(@PathVariable int id) {
         try{
             productService.delete(id);

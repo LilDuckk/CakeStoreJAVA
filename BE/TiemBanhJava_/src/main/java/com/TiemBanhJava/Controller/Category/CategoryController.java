@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,8 @@ import java.util.List;
 public class CategoryController {
     private final ICategoryService categoryService;
 
-    @GetMapping("/list") 
+    @GetMapping("/list")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<ListCategoryResponse> getAllCategory(@RequestParam("page") int page, @RequestParam("limit") int limit) {
         PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("categoryID").descending());
         Page<CategoryResponse> categoryPage = categoryService.getList(pageRequest);
@@ -36,6 +38,7 @@ public class CategoryController {
                 .build());
     }
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> getCategoryByID (@Valid @PathVariable("id")int id){
         try{
             Category category = categoryService.getbyID(id);
@@ -47,6 +50,7 @@ public class CategoryController {
     }
 
     @PostMapping("/insert")
+    @PreAuthorize("hasRole('ROLE_ADMIN')  or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> insertCategory(@Valid @RequestBody CategoryDTO categoryDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -61,6 +65,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateCategory(@PathVariable int id ,@Valid @RequestBody CategoryDTO categoryDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -75,6 +80,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> deleteCategory(@PathVariable int id) {
         try{
             categoryService.delete(id);

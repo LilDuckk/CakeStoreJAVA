@@ -3,6 +3,7 @@ package com.TiemBanhJava.Components;
 import com.TiemBanhJava.Exeception.InvalidParamException;
 import com.TiemBanhJava.Models.Users;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -33,17 +34,16 @@ public class JwtTokenUtil {
         /*this.generateSecretKey();*/
         claims.put("phoneNumber", user.getPhoneNumber());
         try {
-            String token = Jwts.builder()
-                    .setClaims(claims) //how to extract claims from this ?
-                    .setSubject(user.getPhoneNumber())// lấy SĐT
-                    .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000)) //Thời hạn của token
-                    .signWith(getSignInKey(), SignatureAlgorithm.HS256) //Câu hỏi bảo mật
+            return Jwts.builder()
+                    .setClaims(claims)
+                    .setSubject(user.getPhoneNumber())
+                    .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000L)) // thời hạn của token
+                    .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                     .compact();
-            return token;
         }catch (Exception e) {
             //you can "inject" Logger, instead System.out.println
             throw new InvalidParamException("Cannot create jwt token, error: "+e.getMessage());
-            //return null;
+
         }
     }
     private Key getSignInKey() {
@@ -78,8 +78,12 @@ public class JwtTokenUtil {
         return extractClaim(token, Claims::getSubject);
     }
     public boolean validateToken(String token, UserDetails userDetails) {
-        String phoneNumber = extractPhoneNumber(token);
-        return (phoneNumber.equals(userDetails.getUsername()))
-                && !isTokenExpired(token);
+        try {
+            String phoneNumber = extractPhoneNumber(token);
+            return (phoneNumber.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        } catch (ExpiredJwtException e) {
+            return false;
+        }
     }
 }
+
