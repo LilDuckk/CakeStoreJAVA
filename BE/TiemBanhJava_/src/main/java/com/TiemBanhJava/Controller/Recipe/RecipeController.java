@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,7 @@ public class RecipeController {
     }
 
     @PostMapping("/insert")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> insertRecipe(@Valid @RequestBody RecipeDTO recipeDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -70,6 +72,7 @@ public class RecipeController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateRecipe(@PathVariable int id ,@Valid @RequestBody RecipeDTO recipeDTO, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -88,6 +91,7 @@ public class RecipeController {
         }
     }
     @PostMapping(value = "/insertImage/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> insertImage(@Valid @ModelAttribute ImageRecipeDTO imageRecipeDTO, @PathVariable int id, BindingResult result) {
         try{
             if(result.hasErrors()) {
@@ -110,6 +114,7 @@ public class RecipeController {
     }
 
     @DeleteMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> deleteRecipe(@PathVariable int id) {
         try{
             recipeService.delete(id);

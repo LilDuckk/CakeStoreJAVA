@@ -63,6 +63,7 @@ public class UserController {
     }
 
     @GetMapping("/list") // http://localhost:2330/VOX/user/list
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<UserListRespone> getAllUser(@RequestParam("page") int page, @RequestParam("limit") int limit) {
         PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("userID").descending());
         Page<UseResponse> userPage = userService.getListUser(pageRequest);
@@ -75,12 +76,14 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}") //    http://localhost:2330/VOX/user/delete
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> deleteUser(@PathVariable int id) throws Exception {
         userService.deleteUser(id);
         return ResponseEntity.status(HttpStatus.OK).body("Đã xóa thành công User "+ id);
     }
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> getUserDetail(@PathVariable int id) throws Exception {
         try {
             UserDetailRespone userDetailRespone = userService.getUser(id);
@@ -91,6 +94,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UsersDTO userDTO) throws Exception{
         try{
             Users user = userService.updateUser(id, userDTO);
