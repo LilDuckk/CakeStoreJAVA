@@ -31,7 +31,8 @@ public class JwtTokenUtil {
     public String generateToken(Users user) throws Exception{
         // Lưu các thuộc tính của User  => claims
         Map<String, Object> claims = new HashMap<>();
-        /*this.generateSecretKey();*/
+        claims.put("role",user.getRole().getRoleName()); // Duc dang sua
+//        this.generateSecretKey();
         claims.put("phoneNumber", user.getPhoneNumber());
         try {
             return Jwts.builder()

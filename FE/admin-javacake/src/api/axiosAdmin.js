@@ -7,13 +7,18 @@ const axiosAdmin = axios.create({
 });
 
 
-// Không cần thiết
-// Sử dụng thằng này khi cần refresh token thôi
-// axiosAdmin.interceptors.response.use((response) => {
-//     return response;
-// }, (error) => {
-//     // Handle errors
-//     throw error;
-// });
+axiosAdmin.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+            console.log('Token added to request:', token);
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 export default axiosAdmin;
