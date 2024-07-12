@@ -63,7 +63,11 @@ public class ProductService implements IProductService {
         if (category.isDelete() == false) {
             product.setCategory(category);
             product.setName(productDTO.getName());
-            product.setThumbnail(insertThumbnail(productDTO.getThumbnail()));
+            if (productDTO.getThumbnail() != null && !productDTO.getThumbnail().isEmpty()) {
+                product.setThumbnail(insertThumbnail(productDTO.getThumbnail()));
+            }else {
+                product.setThumbnail(product.getThumbnail());
+            }
             return productRepository.saveAndFlush(product);
         } else {
             System.out.println("Category đã bị xóa");

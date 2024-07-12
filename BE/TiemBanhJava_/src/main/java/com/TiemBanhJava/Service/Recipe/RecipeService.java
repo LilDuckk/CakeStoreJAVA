@@ -129,7 +129,7 @@ public class RecipeService implements IRecipeService{
         return toRecipeResponse(recipe);
     }
 
-    private RecipeResponse toRecipeResponse(Recipe recipe) {
+    public RecipeResponse toRecipeResponse(Recipe recipe) {
         List<ImageRecipe> imageRecipes = imageRecipeRepository.findByRecipe(recipe);
         List<Integer> status = imageRecipes.stream().map(ImageRecipe::getStatus).collect(Collectors.toList());
         List<String> imagePaths = imageRecipes.stream().map(ImageRecipe::getImage_path).collect(Collectors.toList());

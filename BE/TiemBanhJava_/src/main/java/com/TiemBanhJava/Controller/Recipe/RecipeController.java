@@ -3,6 +3,7 @@ package com.TiemBanhJava.Controller.Recipe;
 import com.TiemBanhJava.DTO.ImageProductDTO;
 import com.TiemBanhJava.DTO.ImageRecipeDTO;
 import com.TiemBanhJava.DTO.RecipeDTO;
+import com.TiemBanhJava.Models.Recipe;
 import com.TiemBanhJava.Response.Recipe.ListRecipeResponse;
 import com.TiemBanhJava.Response.Recipe.RecipeResponse;
 import com.TiemBanhJava.Service.Recipe.IRecipeService;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.prefix}/recipe")
@@ -55,8 +57,13 @@ public class RecipeController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            recipeService.create(recipeDTO);
-            return ResponseEntity.ok("Thêm mới Recipe" + recipeDTO);
+            Recipe recipe = recipeService.create(recipeDTO);
+            RecipeResponse recipeResponse = recipeService.toRecipeResponse(recipe);
+            Map<String,Object> object = Map.of(
+                    "message", "Updated recipe successfully",
+                    "recipe", recipeResponse
+            );
+            return ResponseEntity.ok(object);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -69,7 +76,12 @@ public class RecipeController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            recipeService.update(id,recipeDTO);
+            Recipe recipe =recipeService.update(id,recipeDTO);
+            RecipeResponse recipeResponse = recipeService.toRecipeResponse(recipe);
+            Map<String,Object> object = Map.of(
+                    "message", "Updated recipe successfully",
+                    "recipe", recipeResponse
+            );
             return ResponseEntity.ok("Cập nhật Recipe thành công " + recipeDTO);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

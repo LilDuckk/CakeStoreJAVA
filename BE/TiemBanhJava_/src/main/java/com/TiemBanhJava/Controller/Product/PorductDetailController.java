@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.prefix}/productDetail")
@@ -62,8 +63,13 @@ public class PorductDetailController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            productService.create(productDTO);
-            return ResponseEntity.ok("Thêm mới Product" + productDTO);
+            ProductDetail productDetail = productService.create(productDTO);
+            ProductDetailResponse productDetailResponse = ProductDetailResponse.fromProductDetail(productDetail);
+            Map<String,Object> object = Map.of(
+                    "message", "Create product detail successfully",
+                    "productDetail", productDetailResponse
+            );
+            return ResponseEntity.ok(productDetailResponse);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -83,8 +89,31 @@ public class PorductDetailController {
             if(files.size() ==0){
                 return ResponseEntity.badRequest().body( "Bạn chưa thêm ảnh nào!");
             }
-            productService.saveImage(id, imageProductDTO);
-            return ResponseEntity.ok("Thêm mới Ảnh" + imageProductDTO);
+            String productDetailImage = productService.saveImage(id, imageProductDTO);
+
+            return ResponseEntity.ok(productDetailImage);
+        }catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @PutMapping(value = "update/insertImage/{insertImageID}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> UpdateImage(@Valid @ModelAttribute ImageProductDTO imageProductDTO, @PathVariable int insertImageID, BindingResult result) {
+        try{
+            if(result.hasErrors()) {
+                List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
+                return ResponseEntity.badRequest().body(errorMessages);
+            }
+            List<MultipartFile> files = imageProductDTO.getImage_path();
+            if(files.size() > 5) {
+                return ResponseEntity.badRequest().body( "Bạn thêm quá 5 ảnh");
+
+            }
+            if(files.size() ==0){
+                return ResponseEntity.badRequest().body( "Bạn chưa thêm ảnh nào!");
+            }
+            String productDetailImage = productService.updateImage(insertImageID, imageProductDTO);
+
+            return ResponseEntity.ok(productDetailImage);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -97,8 +126,13 @@ public class PorductDetailController {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            productService.update(id,productDTO);
-            return ResponseEntity.ok("Cập nhật Product thành công " + productDTO);
+            ProductDetail productDetail =productService.update(id,productDTO);
+            ProductDetailResponse productDetailResponse = ProductDetailResponse.fromProductDetail(productDetail);
+            Map<String,Object> object = Map.of(
+                    "message", "Updated product detail successfully",
+                    "productDetail", productDetailResponse
+            );
+            return ResponseEntity.ok(productDetailResponse);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

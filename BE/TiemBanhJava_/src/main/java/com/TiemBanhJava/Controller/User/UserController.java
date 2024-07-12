@@ -91,7 +91,6 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER') or hasRole('ROLE_EMPLOYEE')")
     public ResponseEntity<?> updateUser(@PathVariable int id, @RequestBody UsersDTO userDTO) throws Exception{
         try{
             Users user = userService.updateUser(id, userDTO);
