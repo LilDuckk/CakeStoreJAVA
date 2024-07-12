@@ -18,5 +18,4 @@ public class ProductDTO {
     private String name;
     private float price;
     private MultipartFile thumbnail;
-
 }

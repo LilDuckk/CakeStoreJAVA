@@ -10,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class CategoryResponse {
+    private int categoryID;
     private String categoryParent;
 
     private String name;
@@ -18,6 +19,7 @@ public class CategoryResponse {
 
     public static CategoryResponse fromCategory(Category category){
         CategoryResponse categoryRespoes = CategoryResponse.builder()
+                .categoryID(category.getCategoryID())
                 .categoryParent(category.getCategoryParent())
                 .name(category.getName())
                 .lever(category.getLever())

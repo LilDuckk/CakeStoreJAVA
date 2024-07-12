@@ -11,6 +11,8 @@ import com.TiemBanhJava.Response.Product.ProductResponse;
 import com.TiemBanhJava.Service.Product.IProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,6 +23,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.prefix}/product")
@@ -28,12 +31,14 @@ import java.util.List;
 public class ProductController {
     private final IProductService productService;
 
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+
     @GetMapping("/list")
     public ResponseEntity<ListProductResponse> getAllProduct(@RequestParam("page") int page, @RequestParam("limit") int limit) {
         PageRequest pageRequest = PageRequest.of(page,limit, Sort.by("productID").descending());
         Page<ProductResponse> productResponsesPage = productService.getList(pageRequest);
         int totalPages = productResponsesPage.getTotalPages();
-        List<ProductResponse> productResponses =productResponsesPage.getContent();
+        List<ProductResponse> productResponses = productResponsesPage.getContent();
         return ResponseEntity.ok(ListProductResponse.builder()
                 .productResponses(productResponses)
                 .totalPage(totalPages)
@@ -70,10 +75,18 @@ public class ProductController {
         try{
             if(result.hasErrors()) {
                 List<String> errorMessages = result.getFieldErrors().stream().map(FieldError::getDefaultMessage).toList();
+                logger.info("error: {}",errorMessages);
                 return ResponseEntity.badRequest().body(errorMessages);
             }
-            productService.update(id,productDTO);
-            return ResponseEntity.ok("Cập nhật Product thành công " + productDTO);
+            Product product = productService.update(id,productDTO);
+            ProductResponse productResponse = ProductResponse.fromProduct(product);
+
+            Map<String,Object> object = Map.of(
+                    "message", "Updated product successfully",
+                    "product", productResponse
+            );
+
+            return ResponseEntity.ok(object);
         }catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
