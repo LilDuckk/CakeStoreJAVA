@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaBars, FaArrowRight } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import "../assets/Sidemenu.css"
 
 const SideMenu = () => {
@@ -22,6 +23,11 @@ const SideMenu = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Xóa token khi logout
+        window.location.reload(); // Điều hướng đến trang login sau khi logout
+    };
+
     return (
         <div className={`side-menu ${isMenuToggled ? 'menu-toggled' : ''}`}>
             <div className='nav-side'>
@@ -34,11 +40,11 @@ const SideMenu = () => {
                     <div className="quixnav-scroll">
                         <ul className="metismenu" id="menu">
                             <li className="nav-label">Main Menu</li>
-                            <li><a href="/ql-tai-khoan"><i className="icon icon-home-minimal"></i><span className="nav-text">Quản Lý Tài Khoản</span></a></li>
-                            <li><a href="/ql-muc"><i className="icon icon-folder-15"></i><span className="nav-text">Quản Lý Danh Mục</span></a></li>
-                            <li><a href="/ql-don-hang"><i className="icon icon-single-content-03"></i><span className="nav-text">Quản Lý Đơn Hàng</span></a></li>
-                            <li><a href="/ql-san-pham"><i className="icon icon-cart-simple"></i><span className="nav-text">Quản Lý Sản Phẩm</span></a></li>
-                            <li><a href="/ql-cong-thuc"><i className="icon icon-app-store"></i><span className="nav-text">Quản Lý Công Thức</span></a></li>
+                            <li><Link to="/ql-tai-khoan"><i className="icon icon-home-minimal"></i><span className="nav-text">Quản Lý Tài Khoản</span></Link></li>
+                            <li><Link to="/ql-muc"><i className="icon icon-folder-15"></i><span className="nav-text">Quản Lý Danh Mục</span></Link></li>
+                            <li><Link to="/ql-don-hang"><i className="icon icon-single-content-03"></i><span className="nav-text">Quản Lý Đơn Hàng</span></Link></li>
+                            <li><Link to="/ql-san-pham"><i className="icon icon-cart-simple"></i><span className="nav-text">Quản Lý Sản Phẩm</span></Link></li>
+                            <li><Link to="/ql-cong-thuc"><i className="icon icon-app-store"></i><span className="nav-text">Quản Lý Công Thức</span></Link></li>
                             <li className="nav-label">Extra</li>
                             <li>
                                 <a className="has-arrow" onClick={toggleListPages}>
@@ -60,6 +66,7 @@ const SideMenu = () => {
                                     <li><a href="/">Lock Screen</a></li>
                                 </ul>
                             </li>
+                            <li><Link to="/login" onClick={handleLogout}><i className="icon"></i><span className="nav-text">LogOut</span></Link></li>
                         </ul>
                     </div>
                 </div>

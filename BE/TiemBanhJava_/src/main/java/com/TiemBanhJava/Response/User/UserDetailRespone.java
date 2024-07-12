@@ -18,6 +18,7 @@ public class UserDetailRespone {
     private String phoneNumber;
     private String userAddress;
     private Date userBirthDate;
+    private boolean delete;
 
     public static UserDetailRespone fromUser(Users user){
         UserDetailRespone useDetailRespone = UserDetailRespone.builder()
@@ -28,6 +29,7 @@ public class UserDetailRespone {
                 .userGender(user.getUserGender())
                 .userAddress(user.getUserAddress())
                 .userBirthDate(user.getUserBirthDate())
+                .delete(user.isDelete())
                 .build();
         return  useDetailRespone;
     }

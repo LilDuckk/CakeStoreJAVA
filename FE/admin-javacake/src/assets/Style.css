@@ -94,7 +94,12 @@ main {
 .table td {
     padding: 12px;
     vertical-align: middle;
-    border-top: 1px solid #e3e6f0;
+    border: 1px solid #e3e6f0;
+}
+
+.btn {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .btn-rounded {
@@ -132,4 +137,212 @@ main {
 
 .btn-danger:hover {
     background-color: #c12e2a;
+}
+
+.table td:first-child {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.table td:last-child {
+    text-align: center;
+    width: 1%;
+    white-space: nowrap;
+}
+
+.pagination {
+    display: flex;
+    height: 26px;
+}
+
+.pages-nav {
+    display: flex;
+    align-items: center;
+}
+
+.pagination button {
+    background-color: #4e73df;
+    border-radius: 1rem;
+    margin: 0 2px;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #5a6268;
+    padding: 5px 15px;
+}
+
+.pagination button:disabled {
+    cursor: unset;
+    background-color: #ccc;
+}
+
+/* Style.css */
+.insert-product-modal {
+    min-width: 30%;
+    position: fixed;
+    top: 50%;
+    /* Di chuyển lên trên 50% của màn hình */
+    left: 50%;
+    /* Di chuyển sang phải 50% của màn hình */
+    transform: translate(-50%, -50%);
+    /* Dịch chuyển lùi lại 50% của chính nó */
+    z-index: 1000;
+    /* Đảm bảo form hiển thị trên các thành phần khác */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng cho form */
+    max-width: 80%;
+    /* Giới hạn chiều rộng tối đa */
+    max-height: 80%;
+    /* Giới hạn chiều cao tối đa */
+    overflow: auto;
+    /* Cho phép cuộn nếu nội dung quá lớn */
+}
+
+.insert-product-modal h3 {
+    margin-top: 0;
+    /* Loại bỏ khoảng trống đầu tiên */
+    font-size: 1.5rem;
+    /* Cỡ chữ lớn */
+    color: #333;
+    /* Màu chữ */
+}
+
+.insert-product-modal form {
+    margin-bottom: 0;
+    /* Loại bỏ khoảng cách dưới cùng */
+}
+
+.insert-product-modal .form-group {
+    margin-bottom: 15px;
+    display: grid;
+    /* Khoảng cách giữa các nhóm form */
+}
+
+.form-group input {
+    height: 30px;
+    width: 400px;
+    margin-top: 10px;
+}
+
+.form-group select {
+    height: 40px;
+    width: 410px;
+    margin-top: 10px;
+}
+
+form {
+    display: table-caption;
+}
+
+.btn-primary {
+    width: fit-content;
+    border: none;
+    background-color: #007bff;
+    /* Màu xanh dương đậm */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Hiệu ứng chuyển động */
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    /* Màu xanh dương đậm hơn khi hover */
+    transform: translateY(-2px);
+    /* Nhẹ nhàng nâng lên khi hover */
+}
+
+.form-button {
+    display: flex;
+}
+
+.form-button button {
+    margin-right: 30px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Màu đen với độ mờ 50% */
+    z-index: 100;
+    /* Đảm bảo nằm trên các thành phần khác */
+    display: none;
+    /* Ẩn ban đầu */
+}
+
+.login-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* Chiếm toàn bộ chiều cao của màn hình */
+}
+
+.login-container form {
+    /* margin-bottom: 10000px; */
+    width: 300px;
+    /* Độ rộng của form */
+    padding: 20px;
+    /* Khoảng cách nội dung với viền */
+    border: 1px solid #ccc;
+    /* Đường viền */
+    border-radius: 5px;
+    /* Bo góc */
+    text-align: center;
+    /* Căn giữa nội dung bên trong form */
+}
+
+.login-container h2 {
+    text-align: center;
+}
+
+.login-container form h2 {
+    margin-bottom: 20px;
+    /* Khoảng cách giữa tiêu đề và các input */
+}
+
+.login-container form input[type="text"],
+.login-container form input[type="password"],
+.login-container form button {
+    width: calc(100% - 40px);
+    /* Chiều rộng của input và button là form width - 40px (20px padding mỗi bên) */
+    padding: 10px;
+    /* Khoảng cách nội dung với viền của input và button */
+    margin-bottom: 10px;
+    /* Khoảng cách giữa các input và button */
+    border: 1px solid #ccc;
+    /* Đường viền của input và button */
+    border-radius: 3px;
+    /* Bo góc của input và button */
+}
+
+.login-container form button {
+    background-color: #4CAF50;
+    /* Màu nền của button */
+    color: white;
+    /* Màu chữ của button */
+    border: none;
+    cursor: pointer;
+}
+
+.login-container form button:hover {
+    background-color: #45a049;
+    /* Màu nền của button khi hover */
+}
+
+@media (max-width: 320px) {
+    .login-container form {
+        width: 90%;
+        /* Độ rộng của form khi độ rộng màn hình nhỏ hơn 320px */
+    }
 }
